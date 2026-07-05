@@ -32,12 +32,31 @@ Created: Colorib
     });
 
     /*------------------
-        Background Set
+    Background Set (Lazy)
     --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
+    if ('IntersectionObserver' in window) {
+        var bgObserver = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    var el = entry.target;
+                    var bg = el.getAttribute('data-setbg');
+                    el.style.backgroundImage = 'url(' + bg + ')';
+                    el.classList.add('bg-loaded');
+                    observer.unobserve(el);
+                }
+            });
+        }, { rootMargin: '200px 0px', threshold: 0.01 });
+
+        document.querySelectorAll('.set-bg').forEach(function (el) {
+            bgObserver.observe(el);
+        });
+    } else {
+        // Fallback for old browsers without IntersectionObserver
+        $('.set-bg').each(function () {
+            var bg = $(this).data('setbg');
+            $(this).css('background-image', 'url(' + bg + ')');
+        });
+    }
 
     //Search Switch
     $('.search-switch').on('click', function () {
