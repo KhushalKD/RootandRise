@@ -334,6 +334,23 @@ ol {
 	display: inline-block;
 }
 
+.header__logo a img {
+	width: 290px;
+	height: 42px;
+	max-width: none;
+}
+
+.header__logo-col {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+@media only screen and (max-width: 767px) {
+	.header__logo-col {
+		padding-left: 1px; 
+	}
+}
+
 .header__menu {
 	padding: 30px 0 27px;
 }
@@ -503,6 +520,39 @@ ol {
 
 .canvas__open {
 	display: none;
+}
+
+@media only screen and (max-width: 991px) {
+	.header__right__action {
+		display: none !important;
+	}
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+	/* Free up space: hide WhatsApp button in this cramped range */
+	.header .col-lg-3.text-right {
+		display: none !important;
+	}
+
+	/* Let the menu column expand into the freed-up space */
+	.header .col-lg-7 {
+		flex: 0 0 83.333333%;
+		max-width: 83.333333%;
+	}
+
+	/* Right-align menu items so they sit further right, away from the logo */
+	.header__menu {
+		text-align: right !important;
+		padding-right: 15px;
+	}
+
+	.header__menu ul li {
+		margin-right: 25px;
+	}
+
+	.header__menu ul li:last-child {
+		margin-right: 0;
+	}
 }
 
 /*---------------------
