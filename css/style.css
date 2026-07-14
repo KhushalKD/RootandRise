@@ -1983,9 +1983,15 @@ ol {
 	margin-bottom: 60px;
 }
 
-	.why-choose__item:last-child {
-		margin-bottom: 0;
+.why-choose__item:last-child {
+	margin-bottom: 0;
+}
+
+@media only screen and (max-width: 991px) {
+	.why-choose__card .col-lg-6:first-child .why-choose__item:last-child {
+		margin-bottom: 60px;
 	}
+}
 
 .why-choose__check {
 	flex: 0 0 38px;
